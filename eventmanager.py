@@ -1,0 +1,5 @@
+class eventmanager:
+
+    listen = []
+
+    # methods
