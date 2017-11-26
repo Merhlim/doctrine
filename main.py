@@ -79,19 +79,6 @@ class main:
     exitbutton_click[1] = exitbutton_click[1].move(size[0] / 2 - 200 / 2, 850)
     exitbutton_click[0] = pygame.transform.scale(exitbutton_click[0],(200,75))
 
-    backbutton = [pygame.image.load("./assets/back_static.bmp")]
-    backbutton.append(backbutton[0].get_rect())
-    backbutton[1] = backbutton[1].move(size[0] / 2 - 200 / 2, 750)
-    backbutton[0] = pygame.transform.scale(backbutton[0],(200,75))
-    backbutton_hover = [pygame.image.load("./assets/back_hover.bmp")]
-    backbutton_hover.append(backbutton_hover[0].get_rect())
-    backbutton_hover[1] = backbutton_hover[1].move(size[0] / 2 - 200 / 2, 750)
-    backbutton_hover[0] = pygame.transform.scale(backbutton_hover[0],(200,75))
-    backbutton_click = [pygame.image.load("./assets/back_active.bmp")]
-    backbutton_click.append(backbutton_click[0].get_rect())
-    backbutton_click[1] = backbutton_click[1].move(size[0] / 2 - 200 / 2, 750)
-    backbutton_click[0] = pygame.transform.scale(backbutton_click[0],(200,75))
-
     animate = pygame.USEREVENT + 1
     crossani = 0
     def __init__(self):
