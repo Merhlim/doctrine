@@ -1,4 +1,4 @@
-import pygame, eztext
+import pygame, pygame_textinput
 class game:
     pygame.init()
     def startup(self):
@@ -7,7 +7,7 @@ class game:
         nyc.append(nyc[0].get_rect())
         nyc[0] = pygame.transform.scale(nyc[0], (525, 185))
         nyc[1] = nyc[1].move(10, 25)
-        txtbx = eztext.Input(maxlength=20, color=(88, 0, 0), prompt='',x=10 , y=225, font=pygame.font.Font("./assets/Fonts/terminal.ttf",60))
+        txtbx = pygame_textinput.TextInput(font_family="./assets/Fonts/terminal.ttf",font_size=40,text_color=(88,0,0),cursor_color=(255,255,255))
         backbutton = [pygame.image.load("./assets/back_static.bmp")]
         backbutton.append(backbutton[0].get_rect())
         backbutton[1] = backbutton[1].move(10, 850)
@@ -32,11 +32,16 @@ class game:
         okbutton_click.append(okbutton_click[0].get_rect())
         okbutton_click[1] = okbutton_click[1].move(800, 850)
         okbutton_click[0] = pygame.transform.scale(okbutton_click[0], (200, 75))
-        self.screen.blit(nyc[0], nyc[1])
+        clock = pygame.time.Clock()
+
         while True:
+            pygame.Surface.fill(self.screen,(0,0,0))
+            self.screen.blit(nyc[0], nyc[1])
             mouse = pygame.mouse.get_pos()
             self.screen.blit(backbutton[0], backbutton[1])
-            for event in pygame.event.get():
+            self.screen.blit(okbutton[0],okbutton[1])
+            events = pygame.event.get()
+            for event in events:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                 if 10 + 200 > mouse[0] > 10 - 200 and 850 + 75 > mouse[1] > 850:
@@ -47,6 +52,21 @@ class game:
                         pygame.Surface.fill(self.screen, (0, 0, 0))
                         pygame.display.flip()
                         return None
+                if 800 + 200 > mouse[0] > 800 - 200 and 850 + 75 > mouse[1] > 850:
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        self.screen.blit(okbutton_click[0], okbutton_click[1])
+                        pygame.display.flip()
+                        pygame.time.delay(100)
+                        pygame.Surface.fill(self.screen, (0, 0, 0))
+                        pygame.display.flip()
+                        return None
+            if 800 + 200 > mouse[0] > 800 - 200 and 850 + 75 > mouse[1] > 850:
+                self.screen.blit(okbutton_hover[0], okbutton_hover[1])
+
             if 10 + 200 > mouse[0] > 10 - 200 and 850 + 75 > mouse[1] > 850:
                 self.screen.blit(backbutton_hover[0], backbutton_hover[1])
+            txtbx.update(events)
+            print(txtbx.get_text())  # FIXME Text wont clear on backspace and text cursor not clearing
+            self.screen.blit(txtbx.get_surface(), (10, 255))
             pygame.display.flip()
+            clock.tick(30)

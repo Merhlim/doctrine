@@ -7,7 +7,6 @@ class event:
     pygame.init()
 
     def startgame(self):
-        print("startgame")
         loadtext = pygame.font.Font("./assets/Fonts/HELR45W.ttf", 20)
         load = loadtext.render("Loading...", False, (255, 255, 255))
         pygame.Surface.fill(self.screen,(0,0,0))
@@ -16,7 +15,7 @@ class event:
         game.game.startup(self)
         return None
     def options(self):
-        pygame.surface.fill(self.screen, (0, 0, 0))
+        pygame.Surface.fill(self.screen, (0, 0, 0))
         backbutton = [pygame.image.load("./assets/back_static.bmp")]
         backbutton.append(backbutton[0].get_rect())
         backbutton[1] = backbutton[1].move(10, 850)
