@@ -5,11 +5,17 @@ class game:  # Creating the class for the game
     pygame.init()  # Initialise the pygame libraries
 
     def startup(self):
-        txtbx = pygame_textinput.TextInput(font_family="./assets/Fonts/terminal.ttf",  # Creating a text box object for the user to input text that they desire for their cult name
-                                           font_size=40,
-                                           text_color=(88,0,0),
-                                           cursor_color=(255,255,255)
-                                           )
+        try:
+            txtbx = pygame_textinput.TextInput(font_family="./assets/Fonts/terminal.ttf",  # Creating a text box object for the user to input text that they desire for their cult name
+                                               font_size=40,
+                                               text_color=(88,0,0),
+                                               cursor_color=(255,255,255)
+                                               )
+        except pygame.error as exc:
+            eventmanager.error.missing_file_error(self.screen, exc)
+        except Exception as exc:
+            exit("An error has occurred: "+ exc)
+
         while True:  # NYC screen loop
             pygame.Surface.fill(self.screen,(0,0,0))  # Clear the window
             self.screen.blit(self.nyc[0], self.nyc[1])  # Blit the title to the screen
