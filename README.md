@@ -12,3 +12,7 @@ If you are running the code directly through python then you will need these lib
 [Pygame](https://www.pygame.org/)
 
 [Config parser](https://pypi.python.org/pypi/configparser/3.5.0)
+
+### Special thanks to
+
+Silas Gyger for writing the "pygame_textinput" library [here](https://github.com/Nearoo/pygame-text-input/)
